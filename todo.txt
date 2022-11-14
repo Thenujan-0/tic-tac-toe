@@ -1,0 +1,4 @@
+remove unnecessary event listeners for resize
+add second diagonal winbar
+change color of winbox based on winner
+change all the variables that use units to have int value

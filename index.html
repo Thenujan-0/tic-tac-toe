@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div id="app" class="d-flex flex-column" style="min-height:100vh"> 
+      <div class="navbar navbar-light bg-light border-bottom navbar-expand-sm">
+        <div class="container-fluid">
+          <a href="#" class="navbar-brand ms-auto me-auto">TicTacToe</a>
+        </div>
+      </div>
+
+      <div class="fs-0 win my-3 p-md-3 p-2 text-white rounded w-100 d-flex flex-column align-items-center" style="z-index:3">
+        <p class="fs-1 text-center">Player O won</p>
+        <button class="btn winBtn fs-0">Play again</button>
+      </div>
+
+      <main class="icon flex-grow-1 d-flex align-items-center flex-column justify-content-center position-relative">
+        <div id="horizontalWin" class="position-absolute  top-50 start-50 opacity-50" style="display:none"></div>
+        <div id="verticalWin" class="position-absolute  start-50 opacity-50" style="display: none;"></div>
+        <div id="mainDiagonalWin" class="position-absolute opacity-50" style="display:none"></div>
+
+      </main>
+    </div>
+    <div class="overlay position-absolute top-50 start-50 translate-middle bg-dark vh-100 vw-100 opacity-50" style="z-index:2 ;display: none;"></div>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>

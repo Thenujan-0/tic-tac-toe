@@ -1,0 +1,149 @@
+:root{
+--height:12vw;
+--font-size:clamp(14px,3vw,20px);
+--icon-size:clamp(14px,3vw,100px);
+--sqrt-two:1.414;
+--bs-border-color:red;
+--btn-replay-color:#CBEEE8;
+--color-text:#0A3E34;
+}
+*{
+  margin:0;
+  box-sizing:border-box;
+}
+
+.icon{
+  font-size:var(--icon-size);
+  color:rgb(53, 53, 53);
+}
+
+/* .border-right{
+  border-right:1px solid black
+}
+.border-left{
+  border-left:1px solid black
+}
+.border-top{
+  border-top:1px solid black
+}
+.border-bottom{
+  border-bottom:1px solid black
+} */
+
+.box{
+  height:var(--height);
+  width:var(--height) ;
+  text-align: center;
+  user-select: none;
+  /* border:1px solid black; */
+}
+
+div.win{
+  background:#42C1AA ;
+  overflow: hidden;
+  height:1px;
+  opacity: 0%;
+  /* padding:0 !important; */
+  /* animation: expandHeight 1s ease; */
+  /* transition: all 0.5s; */
+}
+
+.winBtn{
+  background-color:var(--btn-replay-color) !important;
+  width:fit-content;
+}
+
+.winBtn:hover{
+  color: var(--color-text) !important;
+
+}
+.fs-0 *,.fs-0{
+  font-size:var(--font-size)
+}
+
+.btn.fs-0{
+  font-size: var(--font-size);
+}
+
+.playerX{
+  color:#EC5454;
+}
+.playerO{
+  color:#42C1AA;
+}
+
+
+#horizontalWin{
+  width:calc(2.5 * var(--height));
+  height:calc(var(--height)/ 2);
+  background-color: #42C1AA;
+  /* border-radius: 1vw; */
+  animation: expandHorizontalWidth var(--winAnimationDuration) ease;
+  transform: translateY(-50%) ;
+
+}
+#verticalWin{
+  width:calc(var(--height)/ 2);
+  height:calc(2.5 * var(--height));
+  background-color: #42C1AA;
+  transform: translateX(-50%);
+  animation:expandVerticalHeight var(--winAnimationDuration) ease-in;
+
+}
+
+#mainDiagonalWin{
+  top:50%;
+  left:50%;
+  width:calc(var(--height)/ 2);
+  height:calc(var(--sqrt-two) * 2.5 * var(--height));
+  background-color: #42C1AA;
+  transform: rotate(-45deg);
+  transform-origin: top center;
+  animation:expandVerticalHeight var(--winAnimationDuration) ease-in;  
+
+}
+
+
+@keyframes expandHorizontalWidth{
+  from{
+    width:0;
+    /* transform: translate(-100%,-50%) ; */
+  }
+
+  to{
+    width:calc(2.5 * var(--height));
+    /* transform: translate(-50%,-50%) ; */
+
+  }
+}
+@keyframes expandVerticalHeight{
+  from{
+    height:0;
+    /* transform: translate(-100%,-50%) ; */
+  }
+
+  to{
+    height:calc(2.5 * var(--height));
+    /* transform: translate(-50%,-50%) ; */
+
+  }
+}
+
+@keyframes fade-in{
+  from{
+    opacity: 0%;
+  }
+
+  to{
+    opacity:100%
+  }
+}
+
+@keyframes expandHeight{
+  from{
+    height:0%;
+  }
+  to{
+    height:fit-content;
+  }
+}
