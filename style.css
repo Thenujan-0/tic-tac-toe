@@ -4,12 +4,37 @@
 --icon-size:clamp(14px,3vw,100px);
 --sqrt-two:1.414;
 --bs-border-color:red;
---btn-replay-color:#CBEEE8;
 --color-text:#0A3E34;
+--player-o-color:#42C1AA;
+--player-o-btn-color:#CBEEE8;
+--player-x-color:#EC5454;
+--player-x-btn-color:#ffa7a7;
+--draw-color:#68819d;
+--draw-btn-color:#c6d5e3;
 }
 *{
   margin:0;
   box-sizing:border-box;
+}
+
+/* .navbar span:first-of-type,
+.navbar span:last-of-type{
+  color:var(--player-o-color)
+}
+.navbar span:nth-of-type(2){
+  color:var(--player-x-color)
+} */
+
+.navbar  span{
+  /* color:var(--player-o-color) */
+
+}
+
+.navbar .navbar-brand{
+  font-weight: bold;
+  background: linear-gradient(to right , var(--player-o-color), var(--player-x-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .icon{
@@ -17,39 +42,23 @@
   color:rgb(53, 53, 53);
 }
 
-/* .border-right{
-  border-right:1px solid black
-}
-.border-left{
-  border-left:1px solid black
-}
-.border-top{
-  border-top:1px solid black
-}
-.border-bottom{
-  border-bottom:1px solid black
-} */
 
 .box{
   height:var(--height);
   width:var(--height) ;
   text-align: center;
   user-select: none;
-  /* border:1px solid black; */
 }
 
 div.win{
-  background:#42C1AA ;
+  background:var(--player-o-color);
   overflow: hidden;
   height:1px;
   opacity: 0%;
-  /* padding:0 !important; */
-  /* animation: expandHeight 1s ease; */
-  /* transition: all 0.5s; */
 }
 
 .winBtn{
-  background-color:var(--btn-replay-color) !important;
+  background-color:var(--player-o-btn-color) !important;
   width:fit-content;
 }
 
@@ -66,18 +75,51 @@ div.win{
 }
 
 .playerX{
-  color:#EC5454;
+  color:var(--player-x-color);
 }
 .playerO{
-  color:#42C1AA;
+  color:var(--player-o-color);
+}
+.scoreBoard{
+  width:clamp(100px , 70vw, 800px);
+  margin:0 auto;
 }
 
+.scoreBoard .name, .scoreBoard .score{
+  padding:10px 20px;
+}
+
+.playerX.name,
+.playerX.score{
+  background:var(--player-x-color);
+  color:white;
+
+}
+.playerO.name,
+.playerO.score{
+  background:var(--player-o-color);
+  color:white;
+}
+
+.spacer{
+  width: 3px;
+}
+
+.playerX.name, .playerO.name{
+  transition: width 10s;
+  overflow: hidden;
+}
+
+.topbarBorder{
+  height:3px;
+  width:100%;
+  background:linear-gradient(to right, var(--player-o-color),var(--player-x-color));
+}
 
 #horizontalWin{
   width:calc(2.5 * var(--height));
   height:calc(var(--height)/ 2);
-  background-color: #42C1AA;
-  /* border-radius: 1vw; */
+  background-color: var(--player-o-color);
   animation: expandHorizontalWidth var(--winAnimationDuration) ease;
   transform: translateY(-50%) ;
 
@@ -85,7 +127,7 @@ div.win{
 #verticalWin{
   width:calc(var(--height)/ 2);
   height:calc(2.5 * var(--height));
-  background-color: #42C1AA;
+  background-color: var(--player-o-color);
   transform: translateX(-50%);
   animation:expandVerticalHeight var(--winAnimationDuration) ease-in;
 
@@ -96,8 +138,19 @@ div.win{
   left:50%;
   width:calc(var(--height)/ 2);
   height:calc(var(--sqrt-two) * 2.5 * var(--height));
-  background-color: #42C1AA;
+  background-color: var(--player-o-color);
   transform: rotate(-45deg);
+  transform-origin: top center;
+  animation:expandVerticalHeight var(--winAnimationDuration) ease-in;  
+
+}
+#secondDiagonalWin{
+  top:50%;
+  left:50%;
+  width:calc(var(--height)/ 2);
+  height:calc(var(--sqrt-two) * 2.5 * var(--height));
+  background-color: var(--player-o-color);
+  transform: rotate(45deg);
   transform-origin: top center;
   animation:expandVerticalHeight var(--winAnimationDuration) ease-in;  
 
@@ -107,25 +160,19 @@ div.win{
 @keyframes expandHorizontalWidth{
   from{
     width:0;
-    /* transform: translate(-100%,-50%) ; */
   }
 
   to{
     width:calc(2.5 * var(--height));
-    /* transform: translate(-50%,-50%) ; */
-
   }
 }
 @keyframes expandVerticalHeight{
   from{
     height:0;
-    /* transform: translate(-100%,-50%) ; */
   }
 
   to{
     height:calc(2.5 * var(--height));
-    /* transform: translate(-50%,-50%) ; */
-
   }
 }
 
@@ -136,6 +183,15 @@ div.win{
 
   to{
     opacity:100%
+  }
+}
+@keyframes fade-out{
+  from{
+    opacity: 100%;
+  }
+
+  to{
+    opacity:0%
   }
 }
 
