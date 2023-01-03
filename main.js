@@ -72,7 +72,7 @@ const scoreBoard = (function () {
     // To animate
     const currentWidth = Number.parseFloat(window.getComputedStyle(expandableDiv).width);
     expandableDiv.style.width = `${currentWidth}px`;
-    const transitionTimeSeconds = '3';
+    const transitionTimeSeconds = '0.2';
     expandableDiv.style.transition = `all ${transitionTimeSeconds}s`;
     // addBtn();
 
@@ -89,10 +89,12 @@ const scoreBoard = (function () {
       const textElem = expandableDiv.querySelector('p');
       setTimeout(() => {
         textElem.textContent = currentPlayerX ? 'Player X won' : 'Player O won';
+        const btns = $('.btn-playAgain');
+        btns.forEach((btn) => {
+          btn.addEventListener('click', playAgainBtnCallback);
+          btn.style.display = 'block';
+        });
       }, (transitionTimeSeconds * 1000) / 2);
-      // addBtn();
-      const btn = $('.btn-playAgain');
-      btn.addEventListener('click', playAgainBtnCallback);
     }, 500);
   }
 
@@ -114,6 +116,10 @@ const scoreBoard = (function () {
 
     const textElem = expandableDiv.querySelector('p');
     textElem.textContent = currentPlayerX ? 'Player X' : 'Player O';
+    const replayBtns = $(".btn-playAgain");
+    replayBtns.forEach((btn) => {
+      btn.style.display = 'none';
+    });
   }
 
   return {
@@ -266,11 +272,11 @@ const winHandler = (function () {
 
     if (currentPlayerX) {
       winBox.setText('Player X won the game');
-      const playerXScore = $('.playerX.score')[0];
+      const playerXScore = $('.playerX.score > p')[0];
       playerXScore.textContent = Number.parseInt(playerXScore.textContent, 10) + 1;
     } else {
       winBox.setText('Player O won the game');
-      const playerOScore = $('.playerO.score')[0];
+      const playerOScore = $('.playerO.score > p')[0];
       playerOScore.textContent = Number.parseInt(playerOScore.textContent, 10) + 1;
     }
 
@@ -402,7 +408,7 @@ $('.box').forEach((elem) => {
   elem.addEventListener('click', clickCallback);
 });
 
-$('button')[0].addEventListener('click', () => {
-  // window.location.reload();
-  board.reset();
-});
+// $('button')[0].addEventListener('click', () => {
+//   // window.location.reload();
+//   board.reset();
+// });
